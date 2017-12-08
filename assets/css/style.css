@@ -7,8 +7,8 @@ body{
 
 .container {
 	width: 750px;
-	height: 530px;
-	margin-top: 70px;
+	height: 570px;
+	margin-top: 60px;
 	box-sizing: border-box;
 	border: 4px solid #5e0118;
 	background-color: #e7d144;
@@ -27,6 +27,7 @@ h1{
 	border: 2px solid #5e0118;
 	font-size: 30px;
 	font-family: 'Anton', sans-serif;
+	letter-spacing: 2px;
 }
 
 .game-area {
@@ -57,4 +58,14 @@ h3 {
 .answer-button:hover {
   border:2px solid #5e0118;
   background: #ce3c4a;
+}
+#start-over {
+	width: 200px;
+	height: 60px;
+	background-color: #5e0118;
+	border: 2px solid #5e0118;
+	font-size: 30px;
+	font-family: 'Anton', sans-serif;
+	color: #ffffff;
+	letter-spacing: 2px;
 }

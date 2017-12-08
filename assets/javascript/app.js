@@ -5,6 +5,60 @@ $(document).ready(function() {
 	var timerStartNumber = 20;
 
 // ==========================================================================================================
+
+	// Array with all the questions for trivia game
+	var questions = [{
+		question: "Which of these is not one of the main characters on The Big Bang Theory?",
+		answers: ["Sheldon", "Leonard", "Rajesh", "John"],
+		rightAnswer:"John",
+		image:"assets/images/group.gif",
+	}, {
+		question: "Which character is an Astrophysicist?",
+		answers: ["Leonard", "Sheldon", "Raj", "Penny"],
+		rightAnswer:"Raj",
+		image:"assets/images/raj.gif",
+	}, {
+		question: "Which character is a theoretical physicist?",
+		answers:["Howard", "Leonard", "Sheldon","Raj"],
+		rightAnswer:"Sheldon",
+		image:"assets/images/sheldon.gif",
+	},	{
+		question: "For the firxt six seasons who couldn't speak to girls without being drunk?",
+		answers: ["Sheldon", "Leonard", "Raj", "Howard"],
+		rightAnswer:"Raj",
+		image:"assets/images/rajtalk.gif",
+	},	{
+		question: "Which character has a PhD in neurobiology and frequently uses monkeys in research and experiments?",
+		answers: ["Penny", "Sheldon", "Amy", "Stuart"],
+		rightAnswer:"Amy",
+		image:"assets/images/amy.gif",
+	},	{
+		question: "Which character is an aerospace engineer?",
+		answers: ["Stuart", "Howard", "Bernadette", "Amy"],
+		rightAnswer:"Howard",
+		image:"assets/images/howard.gif",
+	},	{
+		question: "Who dated a North Korean spy?",
+		answers: ["Sheldon", "Raj", "Leonard", "Howard"],
+		rightAnswer:"Leonard",
+		image:"assets/images/leonard.gif",
+	},	{
+		question: "Who lived with Howard's mother before she died?",
+		answers: ["Raj", "Howard", "Penny", "Stuart"],
+		rightAnswer:"Stuart",
+		image:"assets/images/stuart.gif",
+	},	{
+		question: "Who starred in 'Serial Ape-ist' and then made the sequel with Wil Wheaton?",
+		answers: ["Leonard", "Penny", "Amy", "Sheldon"],
+		rightAnswer:"Penny",
+		image:"assets/images/penny.gif",
+	},	{
+		question: "Who was Sheldon's roommate?",
+		answers:["Howard", "Raj", "Leonard", "Amy"],
+		rightAnswer:"Leonard",
+		image:"assets/images/roommates.gif",
+	}];
+
 	// Click events
 	$(document).on("click", "#start", function () {
 		$("#subcontainer").prepend('<h3>Time Remaining: <span id="timer-count">20</span> seconds</h3>');
@@ -18,59 +72,6 @@ $(document).ready(function() {
 	$(document).on('click', '#start-over', function() {
   		game.reset();
 	});
-
-	// Array with all the questions for trivia game
-	var questions = [{
-		question: "Which of these is not one of the main characters on The Big Bang Theory?",
-		answers: ["Sheldon", "Leonard", "Rajesh", "Howard", "John"],
-		rightAnswer:"John",
-		image:"assets/images/",
-	}, {
-		question: "Which character is an Astrophysicist?",
-		answers: ["Leonard", "Sheldon", "Raj", "Penny"],
-		rightAnswer:"Raj",
-		image:"assets/images/",
-	}, {
-		question: "Which character is a theoretical physicist?",
-		answers:["Howard", "Leonard", "Sheldon","Raj"],
-		rightAnswer:"Sheldon",
-		image:"assets/images/",
-	},	{
-		question: "For the firxt six seasons who couldn't speak to girls without being drunk?",
-		answers: ["Sheldon", "Leonard", "Raj", "Howard"],
-		rightAnswer:"Raj",
-		image:"assets/images/",
-	},	{
-		question: "Which character has a PhD in neurobiology and frequently uses monkeys in research and experiments?",
-		answers: ["Penny", "Sheldon", "Amy", "Stuart"],
-		rightAnswer:"Amy",
-		image:"assets/images/",
-	},	{
-		question: "Which character is an aerospace engineer?",
-		answers: ["Stuart", "Howard", "Bernadette", "Amy"],
-		rightAnswer:"Howard",
-		image:"assets/images/",
-	},	{
-		question: "Who dated a North Korean spy?",
-		answers: ["Sheldon", "Raj", "Leonard", "Howard"],
-		rightAnswer:"Leonard",
-		image:"assets/images/",
-	},	{
-		question: "Who lived with Howard's mother before she died?",
-		answers: ["Raj", "Howard", "Penny", "Stuart"],
-		rightAnswer:"Stuart",
-		image:"assets/images/",
-	},	{
-		question: "Who starred in 'Serial Ape-ist' and then made the sequel with Wil Wheaton?",
-		answers: ["Leonard", "Penny", "Amy", "Sheldon"],
-		rightAnswer:"Penny",
-		image:"assets/images/",
-	},	{
-		question: "Who was Sheldon's roommate?",
-		answers:["Howard", "Raj", "Leonard", "Amy"],
-		rightAnswer:"Leonard",
-		image:"assets/images/",
-	}];
 
 	// When game starts, set values to 0
 	var game = {
@@ -96,6 +97,7 @@ $(document).ready(function() {
 			clearInterval(timer);
 			layout.html('<h2> Out of Time!</h2>');
 			layout.append('<h3> The correct answer was: ' + questions[this.currentQuestion].rightAnswer + '</h3>');
+			layout.append('<img src="' + questions[game.currentQuestion].image + '" />');
 
 			if (game.currentQuestion === questions.length - 1) {
 				setTimeout (game.results, 3000);
@@ -137,6 +139,7 @@ $(document).ready(function() {
 			clearInterval (timer);
 			game.correct++;
 			layout.html('<h2> You got it!</h2>');
+			layout.append('<img src="' + questions[game.currentQuestion].image + '" />');
 
 			if (game.currentQuestion === questions.length - 1) {
 				setTimeout (game.results, 3000);
@@ -152,6 +155,7 @@ $(document).ready(function() {
 			game.incorrect++;
 			layout.html('<h2> Nope!</h2>');
 			layout.append('<h3> The correct answer was: ' + questions[this.currentQuestion].rightAnswer + '</h3>');
+			layout.append('<img src="' + questions[game.currentQuestion].image + '" />');
 
 			if (game.currentQuestion === questions.length - 1) {
 				setTimeout (game.results, 3000);
@@ -164,7 +168,6 @@ $(document).ready(function() {
 		//Shows player's results and give option to play game again
 		results: function(){
 			clearInterval(timer);
-
 			layout.html('<h2> You are done! This is how you did: </h2');
 			layout.append('<h3> Correct answers: ' + game.correct + '</h3>');
 			layout.append('<h3> Incorrect answers: ' + game.incorrect + '</h3>');
@@ -179,8 +182,6 @@ $(document).ready(function() {
     		this.correct = 0;
     		this.incorrect = 0;
 			this.showQuestion();
-		},
-		
+		},	
 	};
-
 })
