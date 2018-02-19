@@ -8,6 +8,6 @@ At the end of game, user will be shown their results.
 
 ![Trivia](assets/images/trivia.png)
 
-Open gamere [here](https://danielladt.github.io/TriviaGame/)
+Open game [here](https://danielladt.github.io/TriviaGame/)
 
 ## Enjoy!
